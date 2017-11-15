@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UniRx;
+﻿using UniRx;
 using UniRx.Triggers;
-using UnityEditor;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -17,6 +13,8 @@ public class Game : MonoBehaviour
 	public float maxHazardHeight = 3f;
 	public float hazardSpeed = -2f;
 	public float initialPosition = 10f;
+
+	int points = 0;
 
 	void Start()
 	{
@@ -50,7 +48,13 @@ public class Game : MonoBehaviour
 	{
 		//Instantiate and intiliaze a new Hazard GameObject using a prefab
 		var hazardGameObject = Instantiate(prefabHazard);
+		
 		hazardGameObject.Setup(hazard, collisions);
+		
+		hazard.Positions
+			.TakeWhile(positions => positions > 0f)
+			.Last()
+			.Subscribe(last => pointsView.Points = ++points);
 	}
 
 	IObservable<float> GetTime()

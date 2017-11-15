@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UniRx;
-using System;
 
 public class HazardBehaviour : MonoBehaviour
 {
