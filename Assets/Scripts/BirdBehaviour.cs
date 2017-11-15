@@ -9,12 +9,10 @@ public class BirdBehaviour : MonoBehaviour
 
 	public void Setup(IObservable<float> time, IObservable<Unit> collisions)
 	{
-		var bird = new Bird(transform.position.y, -gravity, jumpBoost);
+		var bird = new Bird(time, transform.position.y, -gravity, jumpBoost);
 
 		// Transform time into bird positions
-		time.Select(n => bird.Update(Time.deltaTime))
-			// Get bird position events and actually move the bird
-			.Subscribe(state => ChangePosition(state));
+		bird.VerticalPosition.Subscribe(position => ChangePosition(position));
 
 		// From every frame, get only the frames where the mouse button was pressed down
 		Observable.EveryUpdate()
@@ -26,8 +24,8 @@ public class BirdBehaviour : MonoBehaviour
 		collisions.Subscribe(c => bird.Collide());
 	}
 
-	void ChangePosition(State state)
+	void ChangePosition(float position)
 	{
-		transform.position = new Vector3(transform.position.x, state.position, transform.position.z);
+		transform.position = new Vector3(transform.position.x, position, transform.position.z);
 	}
 }

@@ -1,4 +1,4 @@
-using System;
+using UniRx;
 
 public class Bird
 {
@@ -6,36 +6,41 @@ public class Bird
 	float jumpBoost = 10f;
 	bool dead = false;
 
-	public float VerticalVelocity { get; private set; }
-	public float VerticalPosition { get; private set; }
-
-	public Bird(float initialPosition, float acceleration, float jumpBoost)
+	float verticalVelocity;
+	float verticalPosition;
+	
+	public IObservable<float> VerticalPosition { get; private set; }
+	
+	public Bird(IObservable<float> time, float initialPosition, float acceleration, float jumpBoost)
 	{
-		VerticalPosition = initialPosition;
-		VerticalVelocity = 0;
+		verticalPosition = initialPosition;
+		verticalVelocity = 0;
 		this.acceleration = acceleration;
 		this.jumpBoost = jumpBoost;
+
+		VerticalPosition = time.Select(n => Update(n)).Select(state => state.position);
+
 	}
 
 	public State Update(float delta)
 	{
-		VerticalVelocity += acceleration * delta;
-		VerticalPosition += VerticalVelocity * delta;
+		verticalVelocity += acceleration * delta;
+		verticalPosition += verticalVelocity * delta;
 
-		return State.Create(VerticalPosition, VerticalVelocity);
+		return State.Create(verticalPosition, verticalVelocity);
 	}
 
 	public void Jump()
 	{
 		if (!dead)
-			VerticalVelocity = jumpBoost;
+			verticalVelocity = jumpBoost;
 	}
 
 	public void Collide()
 	{
 		if (!dead)
 		{
-			VerticalVelocity = 0;
+			verticalVelocity = 0;
 			dead = true;
 		}
 	}
