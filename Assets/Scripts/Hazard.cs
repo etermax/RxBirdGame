@@ -15,8 +15,10 @@ public class Hazard
         InitialPosition = initialPosition;
         moving = true;
 
+        // From every frame, except when the hazard is not moving...
         Positions = time
             .Where(delta => moving)
+            // accumulate the position using speed and deltaTime
             .Scan(initialPosition, (position, deltaTime) => position + speed * deltaTime);
     }
 
