@@ -1,0 +1,43 @@
+{
+  "_from": "@etermax/unity-rx@latest",
+  "_id": "@etermax/unity-rx@5.5.0",
+  "_inBundle": false,
+  "_integrity": "sha512-LE+DNpumrEsm193L2wDKv2WhgGsuhCiVEGpfr4yLH4tDwiQBixS7kgl/1kmVX+mhVT8YfSjgILxQcyVYZvBg/A==",
+  "_location": "/@etermax/unity-rx",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@etermax/unity-rx@latest",
+    "name": "@etermax/unity-rx",
+    "escapedName": "@etermax%2funity-rx",
+    "scope": "@etermax",
+    "rawSpec": "latest",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://verdaccio.etermax.net/@etermax%2funity-rx/-/unity-rx-5.5.0.tgz",
+  "_shasum": "fc6af4ffbb09d98a2f662155dce9b2aa38018af8",
+  "_spec": "@etermax/unity-rx@latest",
+  "_where": "/Users/row/UnityProjects/rx-demo/Assets/Standard Assets",
+  "author": {
+    "name": "martin.gonzalez"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "unity-rx ===",
+  "devDependencies": {
+    "@etermax/upm-editor-plugin": "latest"
+  },
+  "files": [
+    "Assets/Package",
+    "CHANGELOG.md"
+  ],
+  "license": "UNLICENSED",
+  "name": "@etermax/unity-rx",
+  "version": "5.5.0"
+}

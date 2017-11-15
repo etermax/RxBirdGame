@@ -1,0 +1,6 @@
+Library
+*.sln
+obj
+UnityPackageManager
+.vscode
+*.csproj
