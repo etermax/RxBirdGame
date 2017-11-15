@@ -9,6 +9,7 @@ public class Bird
 	float verticalVelocity;
 	float verticalPosition;
 	
+	public IObservable<float> VerticalVelocity { get; private set; }
 	public IObservable<float> VerticalPosition { get; private set; }
 	
 	public Bird(IObservable<float> time, float initialPosition, float acceleration, float jumpBoost)
@@ -18,10 +19,10 @@ public class Bird
 		this.acceleration = acceleration;
 		this.jumpBoost = jumpBoost;
 
-		VerticalPosition = time
-			.Select(Update)
-			.Select(state => state.position);
-
+		//Update state just one time but use it twice
+		var states = time.Select(Update).Share();		
+		VerticalPosition = states.Select(state => state.position);
+		VerticalVelocity = states.Select(state => state.velocity);
 	}
 
 	public State Update(float delta)
