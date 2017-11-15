@@ -18,7 +18,9 @@ public class Bird
 		this.acceleration = acceleration;
 		this.jumpBoost = jumpBoost;
 
-		VerticalPosition = time.Select(n => Update(n)).Select(state => state.position);
+		VerticalPosition = time
+			.Select(Update)
+			.Select(state => state.position);
 
 	}
 
