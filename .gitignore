@@ -4,3 +4,9 @@ obj
 UnityPackageManager
 .vscode
 *.csproj
+.idea
+Temp
+*.
+.DS_Store
+Assets/Plugins/Editor/JetBrains
+JetBrains.meta

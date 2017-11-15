@@ -1,0 +1,46 @@
+Core:
+
+Un pajarito
+	que caiga con aceleracion				Done
+	que salte con aceleracion con el tap	Done
+	que se mueva con deltas de tiempo		Done
+
+Pipes
+	Que no paran de venir					Done
+	Que aparezcan con altura aleatoria		Done
+
+Detección de colision pipe/pajarito
+	Cuando hay una colisión, que se pierda	Done
+
+Detección de colision piso/pajarito techo/pajarito
+	Cuando hay una colision, que se pierda	Done
+
+Perder
+	Que el pajarito caiga					Done
+	Que el pajarito no responda a input		Done
+	Que los pipes se detengan al colisionar	Done
+	Que el spawner se detenga al colisionar	Done
+	Que aparezca la pantalla de perdiste	
+
+Pantalla Perdiste
+	Label que dice "Perdiste"				
+
+Cleanup										Done
+
+Pasar repo a github.
+
+NTH:
+Fondo
+	Que cicle								
+
+Perder
+	Que el fondo deje de ciclar				
+
+Pantalla Perdiste
+	Boton Restart
+
+Pantalla Menu
+	Boton Start
+
+Que recolecte moneditas
+	A las 5 moneditas te da una vida
