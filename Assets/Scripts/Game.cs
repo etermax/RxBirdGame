@@ -11,6 +11,7 @@ public class Game : MonoBehaviour
 	public BirdBehaviour bird;
 	public HazardBehaviour prefabHazard;
 	public ObservableTrigger2DTrigger birdCollisions;
+	public PointsView pointsView;
 	public float spawnInterval = 4f;
 	public float minHazardHeight = -3f;
 	public float maxHazardHeight = 3f;
