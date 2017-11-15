@@ -24,6 +24,7 @@ public class Game : MonoBehaviour
 		var randomService = new RandomFloat(new System.Random());
 		var collisions = GetCollisions();
 
+		//Create the Hazard Spawner
 		var hazardSpawner = new HazardSpawner(
 			time,
 			spawnInterval,
@@ -34,25 +35,33 @@ public class Game : MonoBehaviour
 			hazardSpeed
 		);
 
+		//Initialize Bird
 		bird.Setup(time, collisions);
+		
+		//When a collision event occurs, the hazard spawner stop spawning hazards
 		collisions.Subscribe(collisionEvent => hazardSpawner.Stop());
+		
+		//Every time the HazardSpawner spawns a hazar, create a hazard view
 		hazardSpawner.Hazards.Subscribe(hazard => CreateHazard(hazard, collisions));
 	}
 
 	// Factories
 	void CreateHazard(Hazard hazard, IObservable<Unit> collisions)
 	{
+		//Instantiate and intiliaze a new Hazard GameObject using a prefab
 		var hazardGameObject = Instantiate(prefabHazard);
 		hazardGameObject.Setup(hazard, collisions);
 	}
 
 	IObservable<float> GetTime()
 	{
+		//Transform fixed update calls into time
 		return Observable.EveryFixedUpdate().Select(t => Time.deltaTime);
 	}
 
 	IObservable<Unit> GetCollisions()
 	{
+		//Transform bird onEnterCollision events into just an empty event
 		return birdCollisions.OnTriggerEnter2DAsObservable().Select(collider => Unit.Default);
 	}
 }
